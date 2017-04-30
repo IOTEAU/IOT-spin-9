@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/css.css">
+    <script src="css/css.css"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+
+
+
+
+    <title>หน้าหลัก</title>
+</head>
+
+<body>
+
+
+
+    <div class="container">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+
+                <div class="col-sm-3 well">
+
+
+
+                    <div class="from">
+
+                        <div class="well">
+                            <div class="login-from">
+                                <div class="tab-content">
+                                    <div id="login-tab" class="tab-from-group">
+                                        <form>
+                                            <div class="form-group">
+                                                <h3>Log In
+                                                    <hr>
+                                                </h3>
+                                                <label for="txt_email">Username</label>
+                                                <input type="email" class="form-control" id="txt-email" placeholder="Enter email">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txt_pass">Password</label>
+                                                <input type="password" class="form-control" id="txt-pass" placeholder="Password">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="logout-tap" class="tab-from-group" style="display: none;">
+                                        <div class="form-group">
+                                            <h3>Log Out
+                                                <hr>
+                                            </h3>
+                                            <p id="user-data"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="id-button" type="sign in" class="btn btn-default" onclick="check(this.BtnLogIn)">เข้าสู่ระบบ</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="well">
+                        <h3>
+                            กรุณาเลือกตึก
+                            <hr>
+                        </h3>
+                        <p>
+                            <a href="#">C</a>
+                        </p>
+                        <p>
+                            <a href="#">S</a>
+                        </p>
+                        <p>
+                            <a href="#">M</a>
+                        </p>
+
+                    </div>
+
+                    <div class="well" </div>
+
+                    </div>
+                </div>
+
+                <div class="container-fludid">
+                    <div class="row">
+                        <div class="col-md-8" a ng-href="page2.html">
+
+
+                            <div class="well">
+
+
+                                <h4>ตึก S </h4>
+                                <hr>
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-3">
+
+                                        <div class="well">
+
+
+                                            <h4>S101</span>
+
+
+                                            </h4>
+                                            <hr>
+                                            <h4>แสงสว่าง</h4>
+                                            </right>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br><br>
+                                            <h4>เครื่องปรับอากาศ </h4>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br>
+                                            <hr>จำนวนคน
+                                            <p id="userinRoom">0</p>
+
+                                            <hr>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="col-md-3">
+                                        <div class="well">
+                                            
+                                                <h4>S102</h4>
+                                            </a>
+
+                                            <hr>
+                                            <h4>แสงสว่าง</h4>
+                                            </right>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br><br>
+                                            <h4>เครื่องปรับอากาศ </h4>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br>
+                                            <hr>จำนวนคน
+                                            <p id="userinRoom">0</p>
+                                            <hr>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="well" >
+                                           
+                                                <h4>S103</h4>
+                                            </a>
+                                            <hr>
+                                            <h4>แสงสว่าง</h4>
+                                            </right>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br><br>
+                                            <h4>เครื่องปรับอากาศ </h4>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br>
+                                            <hr>จำนวนคน
+                                            <p id="userinRoom">0</p>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="well" >
+
+                                                <h4>S104</h4>
+                                            </a>
+                                            <hr>
+                                            <h4>แสงสว่าง</h4>
+                                            </right>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br><br>
+                                            <h4>เครื่องปรับอากาศ </h4>
+                                            <div>
+                                                <p class="check-status" style="color:#D94A38;width:160px;height:20px;;"></p>
+                                            </div>
+                                            <br>
+                                            <hr>จำนวนคน
+                                            <p id="userinRoom">0</p>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <div class="container-fludid">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    <script src="js/jquery-3.2.0.min.js">
+
+                    </script>
+                    <script src="js/bootstrap.min.js"></script>
+
+
+                    <script src="js/jquery-3.2.0.min.js"></script>
+                    <script src="js/bootstrap.min.js"></script>
+
+                    <script src="js/connectFirebase.js"></script>
+                    <script src="js/login.js"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

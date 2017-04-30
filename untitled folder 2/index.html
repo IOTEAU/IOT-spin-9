@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDCM1ZDEa4256l5uaN_8s8Lqb8rOFkd_qk",
+            authDomain: "test1-59b46.firebaseapp.com",
+            databaseURL: "https://test1-59b46.firebaseio.com",
+            projectId: "test1-59b46",
+            storageBucket: "test1-59b46.appspot.com",
+            messagingSenderId: "179860541723"
+        };
+    </script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <button onclick='addArr(1)'>Air 1</button>
+    <button onclick='addArr(2)'>Air 2</button>
+    <button onclick='addArr(3)'>Air 3</button>
+    <button onclick='addArr(5)'>Air 4</button>
+    <button onclick='outTime()'>out</button>
+    <p id="tet">0</p>
+
+
+    <script>
+        firebase.initializeApp(config);
+        var dbFirebase = firebase.database();
+        var numPerple = dbFirebase.ref('num2');
+        var numPerples = numPerple.on('value', function(snapshot) {
+            // console.log("Airtwo:" + snapshot.val());
+
+            document.getElementById('tet').innerHTML = snapshot.val()
+        });
+
+
+
+        var stac = [];
+
+        function addArr(num) {
+            // console.log(num)
+
+            var numx = stac.indexOf(num)
+            if (numx === -1) {
+                stac.push(num)
+            } else {
+                stac.splice(numx, 1)
+            }
+
+
+
+            console.log(stac)
+
+        }
+
+
+        function outTime() {
+            var upToFirebase = dbFirebase.ref('num')
+            upToFirebase.set(stac.shift(0));
+            setInterval(function() {
+                var valToFirebase = stac.shift()
+                console.log(stac)
+                upToFirebase.set(valToFirebase);
+                console.log(valToFirebase)
+            }, 10000);
+
+
+        }
+    </script>
+
+
+
+</body>
+
+</html>

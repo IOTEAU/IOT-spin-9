@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="maclick(1)">click_senSor_One</button>
+    <button onclick="maclick(2)">click_senSor_Two</button>
+</body>
+
+
+<script>
+    var count = []
+
+
+    function maclick(num) {
+
+        if (count.length < 1) {
+            count.push(num)
+        } else if (count.length === 1) {
+            count.push(num)
+
+            if (count[0] === 1 && count[1] === 2) {
+                console.log("+1")
+
+            } else if (count[0] === 2 && count[1] === 1) {
+                console.log("-1")
+
+            }
+            count = []
+        }
+
+
+
+
+    }
+</script>
+
+</html>
