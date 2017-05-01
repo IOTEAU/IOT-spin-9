@@ -1,63 +1,23 @@
+ var stac = [];
 
+ function addArr(num) {
+     // console.log(num)
 
- var stac = new Array();
-var getArray = []
-console.log(getArray)
-
-
-insertQueue(getArray)
-
-function insertQueue(item){
-    for (var i = 0; i < item.length; i++) {
-      inQueue(item[i])
-       }
-
-    }
-
-function inQueue(data){
-
-
-     stac.push(data)
-
-    }
-
-    chackDataQueue(stac)
+     //  var numx = stac.indexOf(num)
+     //  if (numx === -1) {
+     stac.push(num)
+         //  } else {
+         //      stac.splice(numx, 1)
+         //  }
 
 
 
-function chackDataQueue(dataQueue){
-
-    if (dataQueue.length <= 1) {
-
-       outQueue()
-
-    }else{
-
-        timeOut()
-
-    }
-
-}
-
-function outQueue(){
-
-    while(!isEmpty()){
-        console.log('out  ='+ stac.shift())
-
-    }
-
-}
-
-function isEmpty(){
-    return 0==stac.length
-}
-
-function timeOut(){
-	// while(!isEmpty()){
-  setInterval(function() { 
-  	stac2 = stac.shift(); 
-
-	console.log(stac2);
-  }, 3000)
-   // }
-}
+     var upToFirebase = dbFirebase.ref("/room/108/air/air01")
+     upToFirebase.set(stac.shift(0));
+     setInterval(function() {
+         var valToFirebase = stac.shift()
+         console.log(stac)
+         upToFirebase.set(valToFirebase);
+         console.log(valToFirebase)
+     }, 10000);
+ }

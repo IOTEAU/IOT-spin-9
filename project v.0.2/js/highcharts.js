@@ -1,6 +1,6 @@
 function name() {
     var para;
-    var num1 = dbFirebase.ref().child('num');
+    var num1 = dbFirebase.ref().child('energy'); //เปลี่ยนค่าตัวเลข มาแสดงกราฟ
     num1.on('child_added', function(snapshot) {
         para = snapshot.val();
         // console.log(para)
@@ -8,9 +8,6 @@ function name() {
     });
     return para
 }
-
-
-
 
 $(document).ready(function() {
     Highcharts.setOptions({
@@ -22,7 +19,7 @@ $(document).ready(function() {
     var dbFirebase = firebase.database();
     var numPerple = dbFirebase.ref('UserinRoom');
     var numPerples = numPerple.on('value', function(snapshot) {
-        console.log("UserinRoom:" + snapshot.val());
+        // conssole.log("UserinRoom:" + snapshot.val());
         var snap = snapshot.val();
 
 

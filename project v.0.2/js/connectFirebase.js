@@ -1,8 +1,5 @@
 // Initialize Firebase
 
-
-
-// Initialize Firebase
 var config = {
     apiKey: "AIzaSyB2_l8HIycLAdM6a9vA9XMaS_VPqxmBK1o",
     authDomain: "datacontro.firebaseapp.com",
@@ -18,9 +15,13 @@ firebase.initializeApp(config);
 var dbFirebase = firebase.database();
 var numPerple = dbFirebase.ref('UserinRoom');
 var numPerples = numPerple.on('value', function(snapshot) {
-    console.log("Airtwo:" + snapshot.val());
+    // console.log("Airtwo:" + snapshot.val());
     var snap = snapshot.val();
+
+
     var num0 = 0;
+
+
     if (snap <= num0) {
         var x = document.querySelectorAll("#button");
         //S LED //
@@ -75,7 +76,7 @@ var numPerples = numPerple.on('value', function(snapshot) {
 });
 
 //random เข้า Firebase
-var num = dbFirebase.ref('num');
-setInterval(function() {
-    num.push(Math.random() * 100)
-}, 1000)
+// var num = dbFirebase.ref('num');
+// setInterval(function() {
+//     num.push(Math.random() * 100)
+// }, 1000)
