@@ -70,14 +70,17 @@ void setup() {
 void loop() {
 
   people();
+
+  
   air();
-  sensor();
+  //sensor();
 }
 
 
 void people() {
 
   Firebase.set("UserinRoom", count);
+  
   if (digitalRead(sensorone) == LOW && toggle == false) {
     sensorState = 1 ;
     timeout = millis();
@@ -87,6 +90,8 @@ void people() {
     timeout = millis();
     toggle = true;
   }
+
+  Serial.println(sensorState);
 
   if (sensorState == 1 && digitalRead(sensortwo) == LOW) {
     count++;
@@ -100,6 +105,20 @@ void people() {
   }
   if (millis() - timeout > 5000 && toggle == true) {
     toggle = false;
+  }
+
+
+
+   if (count == 1 ) {
+    digitalWrite(led1, LOW);
+
+      Serial.println("open");
+  } else if (count == 5 ) {
+    digitalWrite(led2, LOW);
+    Serial.println("open5");
+  } else if (count == 10) {
+    digitalWrite(led3, LOW);
+    Serial.println("open10");
   }
 
 }
@@ -123,17 +142,7 @@ void sensor() {
 
 
 
-  if (count == 1 && toggle1 == false) {
-    digitalWrite(led1, LOW);
-
-      Serial.println("open");
-  } else if (count == 5 && toggle1 == false) {
-    digitalWrite(led2, LOW);
-    Serial.println("open5");
-  } else if (count == 10 && toggle1 == false) {
-    digitalWrite(led3, LOW);
-    Serial.println("open10");
-  }
+ 
 }
 
 void energy() {
