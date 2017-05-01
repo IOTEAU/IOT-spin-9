@@ -19,11 +19,11 @@ int Air2 = D7;
 int count = 0;
 
 
-#define FIREBASE_HOST "test1-59b46.firebaseio.com"
-#define FIREBASE_AUTH "81LyQY5oyjuS9WNN9pzdn1gIoXbtzbbk1G9y4SE2"
+#define FIREBASE_HOST "datacontro.firebaseio.com"
+#define FIREBASE_AUTH "T4Sj1NzCmvsoClqegpG3VnaT9DLw2FzNKgqXZ0IR"
 
-#define WIFI_SSID "iPad"
-#define WIFI_PASSWORD "mimimiml111"
+#define WIFI_SSID "A406"
+#define WIFI_PASSWORD "Ninewmaxz406"
 
 
 
@@ -110,8 +110,10 @@ void air() {
 
   if (sum == 1 ) {
     digitalWrite(Air1, LOW);
+    Serial.println("openAir01");
   } else if (sum == 2) {
     digitalWrite(Air2, LOW);
+    Serial.println("openAir02");
   }
 
 }
@@ -124,13 +126,13 @@ void sensor() {
   if (count == 1 && toggle1 == false) {
     digitalWrite(led1, LOW);
 
-    //    Serial.println("open");
+      Serial.println("open");
   } else if (count == 5 && toggle1 == false) {
     digitalWrite(led2, LOW);
-    //    Serial.println("open");
+    Serial.println("open5");
   } else if (count == 10 && toggle1 == false) {
     digitalWrite(led3, LOW);
-    //    Serial.println("open");
+    Serial.println("open10");
   }
 }
 

@@ -12,7 +12,7 @@
 
 
 
-     var upToFirebase = dbFirebase.ref("/room/108/air/air01")
+     var upToFirebase = dbFirebase.ref("air")
      upToFirebase.set(stac.shift(0));
      setInterval(function() {
          var valToFirebase = stac.shift()
