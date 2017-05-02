@@ -15,64 +15,92 @@ firebase.initializeApp(config);
 var dbFirebase = firebase.database();
 var numPerple = dbFirebase.ref('UserinRoom');
 var numPerples = numPerple.on('value', function(snapshot) {
+
+
+
+    
+    
     // console.log("Airtwo:" + snapshot.val());
     var snap = snapshot.val();
+   
 
 
     var num0 = 0;
 
-
+  var LED 
+  var AIR
     if (snap <= num0) {
-        var x = document.querySelectorAll("#button");
+
+        LED = document.querySelectorAll("#button");
         //S LED //
-        x[0, 1, 2, 3, 4, 5, 6, 7].style.display = "block";
-        var x = document.querySelectorAll("#button1");
+        LED[0].style.display = "block";
+       
+        
+         AIR = document.querySelectorAll("#button1");
         //S AIR //
-        x[0, 1, 2, 3, 4, 5, 6, 7].style.display = "none";
+        AIR[0].style.display = "none";
+       
+    } else {
+         LED = document.querySelectorAll("#button");
+        //S101 LED //testSensor
+        LED[0].style.display = "none";
+        
+        
+        
+        
+
+         AIR = document.querySelectorAll("#button1");
+        //S101 LED //
+        AIR[0].style.display = "block";
+        
+        
+    }
+
+    document.getElementById('userinRoomS101').innerHTML = snapshot.val()
+    
+
+
+});
+
+var numPerple1 = dbFirebase.ref('air');
+var numPerples = numPerple1.on('value', function(snapshot) {
+ var snap1 = snapshot.val();
+
+
+var num1 =0
+  var AIRS101
+    if (snap1 <= num1) {
+
+        
+        AIRS101 = document.querySelectorAll("#button");
+       
+        AIRS101[1].style.display = "block";
+        
+         AIRS101 = document.querySelectorAll("#button1");
+        //S AIRS101 //
+        AIRS101[1].style.display = "none";
+     
 
 
 
     } else {
-        var x = document.querySelectorAll("#button");
-        //S101 LED //testSensor
-        x[0].style.display = "none";
-        //S101 AIR //
-        x[1].style.display = "none";
-        //S102 LED //
-        x[2].style.display = "none";
-        //S102 AIR //
-        x[3].style.display = "none";
-        //S103 LED //
-        x[4].style.display = "none";
-        //S103 AIR //
-        x[5].style.display = "none";
-        //S104 LED //
-        x[6].style.display = "none";
-        //S104 AIR //
-        x[7].style.display = "none";
+         AIRS101 = document.querySelectorAll("#button");
+        //S101 AIRS101 //testSensor
+        AIRS101[1].style.display = "none";
+        
+        
+        
+        
 
-        var x = document.querySelectorAll("#button1");
+         AIRS101 = document.querySelectorAll("#button1");
         //S101 LED //
-        x[0].style.display = "block";
-        //S101 AIR //
-        x[1].style.display = "block";
-        //S102 LED //
-        x[2].style.display = "block";
-        //S102 AIR //
-        x[3].style.display = "block";
-        //S103 LED //
-        x[4].style.display = "block";
-        //S103 AIR //
-        x[5].style.display = "block";
-        //S104 LED //
-        x[6].style.display = "block";
-        //S104 AIR //
-        x[7].style.display = "block";
-
+        AIRS101[1].style.display = "block";
+        
+        
+       
+       
 
     }
-
-    document.getElementById('userinRoom').innerHTML = snapshot.val()
 });
 
 //random เข้า Firebase
