@@ -70,8 +70,6 @@ void setup() {
 void loop() {
 
   people();
-
-  
   air();
   sensor();
   energy();
@@ -112,8 +110,6 @@ void people() {
     toggle = false;
   }
 
-
-
    if (count == 1 ) {
     digitalWrite(led1, LOW);
 
@@ -128,7 +124,6 @@ void people() {
 
 }
 
-
 void air() {
   int sum = Firebase.getInt("air");
 
@@ -138,10 +133,12 @@ void air() {
   } else if (sum == 2) {
     digitalWrite(Air2, LOW);
     
+  }else if(sum == 0){
+     digitalWrite(Air1, HIGH);
+     digitalWrite(Air2, HIGH);
   }
 
 }
-
 
 void sensor() {
 
