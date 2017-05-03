@@ -3,20 +3,18 @@
 #include "EmonLib.h"                   // Include Emon Library
 
 EnergyMonitor emon1;
-
-unsigned long timeout;
-int sensorState = 0;
+//CheckPeopleSensor
+const int sensorone = D1;
+const int sensortwo = D2;
+const int Air1 = D6;
+const int Air2 = D7;
+const int sensorState = 0;
+const int lightThreshold[] = {1, 5, 10};
+const int lightRow[] = {D3, D4, D5};
+bool lightState = false;
 bool toggle = false;
-bool toggle1 = false;
-int sensorone = D1;
-int sensortwo = D2;
-int led1 = D3;
-int led2 = D4;
-int led3 = D5;
-int Air1 = D6;
-int Air2 = D7;
-
-int count = 0;
+unsigned long timeout;
+unsigned int numOfPeople = 0;
 
 
 #define FIREBASE_HOST "datacontro.firebaseio.com"
@@ -31,17 +29,15 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(sensorone, INPUT);
   pinMode(sensortwo, INPUT);
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
+  for (int row : lightRow)
+    pinMode(row, OUTPUT);
   pinMode(Air1, OUTPUT);
   pinMode(Air2, OUTPUT);
 
 
 
-  digitalWrite(led1, HIGH);
-  digitalWrite(led2, HIGH);
-  digitalWrite(led3, HIGH);
+  for (int row : lightRow)
+    pinMode(row, HIGH);
   digitalWrite(Air1, HIGH);
   digitalWrite(Air2, HIGH);
 
@@ -69,59 +65,47 @@ void setup() {
 
 void loop() {
 
-  people();
+  inOutSensor();
   air();
-  sensor();
+  turnTheLight();
   energy();
-  
+
 }
 
 
-void people() {
-
-  Firebase.set("UserinRoom", count);
-  
-  if (digitalRead(sensorone) == LOW && toggle == false) {
-    sensorState = 1 ;
-    timeout = millis();
-    toggle = true;
-  } else if (digitalRead(sensortwo) == LOW && toggle == false) {
-    sensorState = 2 ;
-    timeout = millis();
-    toggle = true;
+void inOutSensor() {
+  Firebase.set("UserinRoom", numOfPeople);
+  //Check if people getting in or out
+  if (toggle == false) {
+    //Get in
+    if (digitalRead(checkSensor1) == LOW ) {
+      sensorState = 1;
+      toggle = true;
+      timeout = millis();
+    }
+    //Get out
+    else if (digitalRead(checkSensor2) == LOW ) {
+      sensorState = 2;
+      toggle = true;
+      timeout = millis();
+    }
   }
-
-  Serial.println(sensorState);
-
-  if (sensorState == 1 && digitalRead(sensortwo) == LOW) {
-    count++;
-    
+  //Check if people pass all the sensor
+  if (toggle == true && millis() - timeout < 500) {
+    if (sensorState == 1 && digitalRead(checkSensor2) == LOW) {
+      numOfPeople++;
+      Serial.print("Number of people in the room : ");
+      Serial.println(numOfPeople);
+      toggle = false;
+    } else if (sensorState == 2 && digitalRead(checkSensor1) == LOW) {
+      numOfPeople--;
+      Serial.print("Number of people in the room : ");
+      Serial.println(numOfPeople);
+      toggle = false;
+    }
+  } else {
     toggle = false;
-  toggle1= false;
-  sensorState =0;
-  } else if (sensorState == 2 && digitalRead(sensorone) == LOW) {
-    count--;
-   
-    toggle = false;
-    toggle1= true;
-    sensorState =0;
   }
-  if (millis() - timeout > 5000 && toggle == true) {
-    toggle = false;
-  }
-
-   if (count == 1 ) {
-    digitalWrite(led1, LOW);
-
-      
-  } else if (count == 5 ) {
-    digitalWrite(led2, LOW);
-  
-  } else if (count == 10) {
-    digitalWrite(led3, LOW);
-   
-  }
-
 }
 
 void air() {
@@ -129,33 +113,29 @@ void air() {
 
   if (sum == 1 ) {
     digitalWrite(Air1, LOW);
-   
+
   } else if (sum == 2) {
     digitalWrite(Air2, LOW);
-    
-  }else if(sum == 0){
-     digitalWrite(Air1, HIGH);
-     digitalWrite(Air2, HIGH);
+
+  } else if (sum == 0) {
+    digitalWrite(Air1, HIGH);
+    digitalWrite(Air2, HIGH);
   }
 
 }
 
-void sensor() {
+void turnTheLight() {
+  for (int i = (sizeof(lightThreshold) / sizeof(int)) - 1; i >= 0; i--) {
+    if (numOfPeople >= lightThreshold[i])
+      lightState = true;
+    else
+      lightState = false;
 
-  if(count == 0 && toggle1 == true){
-    digitalWrite(led1, HIGH);
-    
-  }else if(count == 4 && toggle1 == true){
-    
-    digitalWrite(led2, HIGH);
-  }else if(count == 9 && toggle1 == true){
-   
-    digitalWrite(led3, HIGH);
-    
+    if (lightState = true)
+      digitalWrite(lightRow[i], LOW);
+    else
+      digitalWrite(lightRow[i], HIGH);
   }
-
-
- 
 }
 
 void energy() {
