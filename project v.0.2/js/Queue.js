@@ -19,5 +19,5 @@
          console.log(stac)
          upToFirebase.set(valToFirebase);
          console.log(valToFirebase)
-     }, 10000);
+     }, 50000);
  }
